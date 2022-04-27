@@ -19,10 +19,10 @@ mknod /dev/random    c 1   8
 mknod /dev/tty    c 5   0
 apt-get update
 apt-get upgrade -y
-apt-get install -y jq ntfs-3g smartmontools usbutils dnsutils network-manager nginx \
-locales wget curl vim nfs-kernel-server iputils-ping bash-completion \
-ssh net-tools sudo php-fpm php-sqlite3 transmission-daemon libnginx-mod-http-dav-ext \
-cron ethtool zip ifupdown htop rsyslog dialog resolvconf aria2 vsftpd
+apt-get install -y jq ntfs-3g smartmontools usbutils dnsutils network-manager \
+locales wget curl vim iputils-ping bash-completion \
+ssh net-tools sudo \
+cron ethtool zip ifupdown htop rsyslog dialog resolvconf
 sed -i -e 's/#PasswordAuthentication/PasswordAuthentication/g' /etc/ssh/sshd_config
 echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 echo "Asia/Shanghai" > /etc/timezone
