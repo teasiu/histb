@@ -8,7 +8,7 @@ if [ ! -f ${DOWNLOAD_PATH}/${ttyd_file} ]; then
 fi
 
 cd ${WORK_PATH}
-cp -a pre_files/ttyd.service ${ROOTFS}/etc/systemd/system
+# cp -a pre_files/ttyd.service ${ROOTFS}/etc/systemd/system
 chmod 644 ${ROOTFS}/etc/systemd/system/ttyd.service
 cp -a ${DOWNLOAD_PATH}/${ttyd_file} ${ROOTFS}/usr/bin/ttyd
 chmod +x ${ROOTFS}/usr/bin/ttyd

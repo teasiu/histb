@@ -18,8 +18,8 @@ chown nobody:nogroup ${ROOTFS}/home/ubuntu/downloads
 unzip -o -q ${DOWNLOAD_PATH}/${aria2_file} -d ${WWW_PATH}/ariang
 touch ${ROOTFS}/usr/local/aria2/aria2.session
 chmod 777 ${ROOTFS}/usr/local/aria2/aria2.session
-cp -a pre_files/aria2.conf ${ROOTFS}/usr/local/aria2
-cp -a pre_files/aria2c.service ${ROOTFS}/etc/systemd/system
+# cp -a pre_files/aria2.conf ${ROOTFS}/usr/local/aria2
+# cp -a pre_files/aria2c.service ${ROOTFS}/etc/systemd/system
 chmod 644 ${ROOTFS}/etc/systemd/system/aria2c.service
 
 cat << EOF | chroot ${ROOTFS}
