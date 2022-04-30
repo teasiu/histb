@@ -23,7 +23,7 @@ esac
 done
 cd ${WORK_PATH}
 echo "hi3798$bootargs" > target
-cp -a pre_files/bootargs4-$bootargs.bin ${ROOTFS}/usr/bin/bootargs4.bin
-cp -a pre_files/boot4.sh ${ROOTFS}/usr/bin/recoverbackup
+cp -a pre_files/bootargs/bootargs4-$bootargs.bin ${ROOTFS}/usr/bin/bootargs4.bin
+cp -a pre_files/bootargs/boot4.sh ${ROOTFS}/usr/bin/recoverbackup
 chmod 777 ${ROOTFS}/usr/bin/recoverbackup
 echo "hi3798$bootargs" > ${ROOTFS}/etc/hostname
