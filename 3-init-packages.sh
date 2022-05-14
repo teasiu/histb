@@ -79,11 +79,9 @@ EOF
 }
 
 main() {
-	# apt_update
-	# install_package nginx typecho h5ai transmission ttyd frpc aria2 v2ray teslamate \
-	# 	docker samba web2 webdav gitweb nfs-server vsftpd others bootargs
+	apt_update
 	install_all_package
-	# apt_clear
+	apt_clear
 }
 
 main
