@@ -1,7 +1,7 @@
 # install ttyd
 
 ttyd_file="ttyd.armhf"
-ttyd_url="https://git.slitaz.workers.dev/tsl0922/ttyd/releases/download/1.6.3/${ttyd_file}"
+ttyd_url="https://git.histb.com/tsl0922/ttyd/releases/download/1.6.3/${ttyd_file}"
 
 if [ ! -f ${DOWNLOAD_PATH}/${ttyd_file} ]; then
     wget_cmd ${ttyd_url}
