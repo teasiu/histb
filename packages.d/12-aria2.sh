@@ -5,7 +5,7 @@ apt-get install -y aria2
 EOF
 
 aria2_file="AriaNg-1.2.3.zip"
-aria2_url="https://git.slitaz.workers.dev/mayswind/AriaNg/releases/download/1.2.3/${aria2_file}"
+aria2_url="https://git.histb.com/mayswind/AriaNg/releases/download/1.2.3/${aria2_file}"
 
 if [ ! -f ${DOWNLOAD_PATH}/${aria2_file} ]; then
     wget_cmd ${aria2_url}
