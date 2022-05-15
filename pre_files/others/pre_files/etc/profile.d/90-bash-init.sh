@@ -7,7 +7,7 @@ then
 	echo -e "感谢使用 \e[31m海思机顶盒微型 NAS 服务器系统\e[0m
 
 原创作者: \e[32m神雕Teasiu\e[0m
-贡献者: \e[32m Hyy2001 MinaDee 小白菜 爱你久久 Rayneil\e[0m
+贡献者: \e[32m Hyy2001 MinaDee\e[0m
 教程地址: \e[32mhttp://$IP\e[0m
 官网地址: \e[32mhttps://www.histb.com\e[0m
 社区地址: \e[32mhttps://bbs.histb.com\e[0m | 欢迎访问我们的社区, 你的肯定是我们最大的支持!
