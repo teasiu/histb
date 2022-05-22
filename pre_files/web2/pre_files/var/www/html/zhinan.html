@@ -240,8 +240,8 @@
 		                    	install-v2ray.sh		安装 Socks5 服务器
 		                    	install-portainer.sh	安装 Docker 容器管理面板
 		                    	install-gitweb.sh		安装和打造个人的 Git 仓库
-					install-homeassistant.sh	安装智能家居控制面板
-					install-jellyfin.sh		安装电影播放削刮器
+		                    	install-homeassistant.sh	安装智能家居控制面板
+		                    	install-jellyfin.sh		安装电影播放削刮器
                          </pre>
 
                                 <p>使用 vi 命令对文档进行编辑;</p>
@@ -597,8 +597,8 @@
                                 <h4 id="line7_2">更改盒子网口 MAC 地址 - </h4>
                                 <p><pre class="brush: html">
                                 vi /etc/network/interfaces.d/eth0		# 编辑配置文件
-				注意：你改的mac地址必须符合16进制格式！
-				只能从 0123456789ABCDEF 这16个数字与字母中选。
+                                注意：你改的mac地址必须符合16进制格式！
+                                只能从 0123456789ABCDEF 这16个数字与字母中选。
                                 # 在最下方增加下面的内容 (实际内容可按需修改)
                                 pre-up ifconfig eth0 hw ether 00:11:22:33:44:66
                                 </pre>
