@@ -252,7 +252,7 @@ get_version() {
 }
 
 download_v2ray() {
-  DOWNLOAD_LINK="https://git.slitaz.workers.dev/v2fly/v2ray-core/releases/download/$RELEASE_VERSION/v2ray-linux-$MACHINE.zip"
+  DOWNLOAD_LINK="https://git.histb.com/v2fly/v2ray-core/releases/download/$RELEASE_VERSION/v2ray-linux-$MACHINE.zip"
   echo "Downloading V2Ray archive: $DOWNLOAD_LINK"
   if ! curl -x "${PROXY}" -R -H 'Cache-Control: no-cache' -o "$ZIP_FILE" "$DOWNLOAD_LINK"; then
     echo 'error: Download failed! Please check your network or try again.'

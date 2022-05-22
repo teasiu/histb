@@ -35,11 +35,13 @@ then
 } &
 fi
 grep -q '/swapfile' /etc/fstab || echo "/swapfile swap swap defaults,nofail 0 0" >> /etc/fstab
+
+echo 42 > /sys/class/gpio/export
+echo out > /sys/class/gpio/gpio42/direction
+
 echo "/sbin/automount" > /sys/kernel/uevent_helper
 /sbin/automount -a &
 /sbin/net_status &
 /sbin/vlmcsd &
 
-echo 42 > /sys/class/gpio/export
-echo out > /sys/class/gpio/gpio42/direction
 

@@ -8,7 +8,7 @@ echo -e "\e[33m
    \____/_.___/\__,_/_/ /_/\__/\__,_/ 
 \e[0m
 		感谢使用 \e[31m海思机顶盒微型 NAS 服务器系统\e[0m
-		原创作者 神雕Teasiu 贡献者 Hyy2001 MinaDee
+		原创作者 神雕Teasiu 贡献者 Hyy2001 MinaDee Xjm
 		浏览详细使用教程请访问: \e[32mhttp://$IP\e[0m
 		访问我们的官网: \e[32mhttps://www.histb.com\e[0m
 
