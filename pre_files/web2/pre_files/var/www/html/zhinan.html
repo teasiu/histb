@@ -75,11 +75,11 @@
     <script type="text/javascript">
 	function disp_alert()
 	{
-	window.open("https://bbs.ecoo.top");
+	window.open("https://bbs.histb.com");
 	}
 	function dl_alert()
 	{
-	window.open("https://dl.ecoo.top");
+	window.open("https://dl.ecoo.top:2096");
 	}
     </script>
     <div id="wrapper">
@@ -168,7 +168,7 @@
                                                 <li><strong>内网IP : </strong>&nbsp;<?php echo $lanip ?>&nbsp;    <strong>外网网址 : </strong><a href="https://nas-xxxxx.any168.net">https://nas-xxxxx.any168.net</a></li>
                                                 <li><strong>系统版本号 : </strong><?php echo $nasversion ?>   </li>
 												<li><strong>初始默认登陆账号和密码 :</strong>root 1234 </li>
-                                                <li><strong>作者 : </strong> <a href="https://ecoo.top" target="_blank">神雕@histb.com</a></li>
+                                                <li><strong>作者 : </strong> <a href="https://histb.com" target="_blank">神雕@histb.com</a></li>
                                                 <li><strong>支持论坛 : </strong> <a href="https://bbs.histb.com" target="_blank">https://bbs.histb.com</a></li>
                                                 <li><strong>版权和声明 : </strong> <a href="#" target="_blank">本系统固件发布在作者网站, 任何人均可免费下载和安装使用, 如果你是在不良奸商手上购买, 请尝试协商退款或给与差评!<br>作者唯一咸鱼官方账号是"神雕teasiu"<br>NAS系统内置的软件全部开放源码, 开通的服务仅仅用于学习研究, 不得用于任何非法用途</a></li>
                                                 <li><strong>是的, 你的感觉没错, 这是一个小白也会使用的机顶盒服务器全部开源任你白嫖! </strong></li>
@@ -240,6 +240,8 @@
 		                    	install-v2ray.sh		安装 Socks5 服务器
 		                    	install-portainer.sh	安装 Docker 容器管理面板
 		                    	install-gitweb.sh		安装和打造个人的 Git 仓库
+					install-homeassistant.sh	安装智能家居控制面板
+					install-jellyfin.sh		安装电影播放削刮器
                          </pre>
 
                                 <p>使用 vi 命令对文档进行编辑;</p>
@@ -510,12 +512,12 @@
 			     <p>输入命令 vi /etc/samba/smb.conf 修改配置, 在结尾下面添加如下代码: </p>
 			     <pre class="brush: html">
 			     [usb-shares]
-				path = /mnt/sda1/usb-share			# 当然, 你可以直接共享整个U盘目录, 例如 /mnt/sda1
-				read only = no						# 是否设置文件只读权限
-				guest ok = yes						# 是否允许匿名访问
+				path = /mnt/sda1/usb-share
+				read only = no
+				guest ok = yes
 				create mask = 0777
 				directory mask = 0777
-				browseable = yes					# 是否允许浏览目录
+				browseable = yes
 			     </pre>
 			     <pre class="brush: html">
 			    systemctl restart smbd		修改完成后需要重启 Samba 服务
@@ -595,7 +597,9 @@
                                 <h4 id="line7_2">更改盒子网口 MAC 地址 - </h4>
                                 <p><pre class="brush: html">
                                 vi /etc/network/interfaces.d/eth0		# 编辑配置文件
-                                # 增加下面的内容 (实际内容可按需修改)
+				注意：你改的mac地址必须符合16进制格式！
+				只能从 0123456789ABCDEF 这16个数字与字母中选。
+                                # 在最下方增加下面的内容 (实际内容可按需修改)
                                 pre-up ifconfig eth0 hw ether 00:11:22:33:44:66
                                 </pre>
                                 </p>
@@ -618,12 +622,12 @@
 					# 增加下面的内容 (实际内容可按需修改)
 					auto eth0
 					iface eth0 inet static
-					address 192.168.1.10				# IP 地址, 下面部分地址需要填写为同网段的地址
+					address 192.168.1.10
 					network 192.168.1.0
-					netmask 255.255.255.0				# 一般保持不变
+					netmask 255.255.255.0
 					broadcast 192.168.1.255
-					gateway 192.168.1.1					# 网关路由器地址
-					dns-nameservers 192.168.1.1			# 一般也填网关路由器地址
+					gateway 192.168.1.1
+					dns-nameservers 192.168.1.1
 					pre-up ifconfig eth0 hw ether 00:11:22:33:44:66
 					</pre>
 					</p>
