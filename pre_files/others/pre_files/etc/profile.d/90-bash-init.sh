@@ -4,7 +4,7 @@ IP=$(ifconfig eth0 | grep '\<inet\>'| grep -v '127.0.0.1' | awk '{print $2}' | a
 
 if [ ! -f /etc/copyright ]
 then
-	echo -e "感谢使用 \e[31m海思机顶盒微型 NAS 服务器系统\e[0m
+	echo -e "欢迎使用 \e[31m海思机顶盒微型 NAS 服务器系统\e[0m
 
 原创作者: \e[32m神雕Teasiu\e[0m
 贡献者: \e[32m Hyy2001 MinaDee\e[0m
