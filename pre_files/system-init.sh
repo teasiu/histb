@@ -19,6 +19,7 @@ then
 	sed -i "s/ppppp/$sshport/g" /etc/frp/frpc.ini
 	sed -i "s/xxxxx/$sudomainid/g" /var/www/html/zhinan.html
 	sed -i "s/xxxxx/$sudomainid/g" /var/www/html/index2.html
+	/sbin/checkone &
 	dmesg | grep "CPU: hi" | awk -F ':[ ]' '/CPU/{printf ($2)}' > /etc/regname
 fi
 if [ ! -f /etc/first_init ]
@@ -43,5 +44,4 @@ echo "/sbin/automount" > /sys/kernel/uevent_helper
 /sbin/automount -a &
 /sbin/net_status &
 /sbin/vlmcsd &
-
 
