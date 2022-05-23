@@ -1,42 +1,9 @@
 #!/bin/bash
-#
-#           CasaOS Installer Script
-#
-#   GitHub: https://github.com/IceWhaleTech/CasaOS
-#   Issues: https://github.com/IceWhaleTech/CasaOS/issues
-#   Requires: bash, mv, rm, tr, type, grep, sed, curl/wget, tar
-#
-#   This script installs CasaOS to your path.
-#   Usage:
-#
-#   	$ curl -fsSL https://get.icewhale.io/casaos.sh | bash
-#   	  or
-#   	$ wget -qO- https://get.icewhale.io/casaos.sh | bash
-#
-#   In automated environments, you may want to run as root.
-#   If using curl, we recommend using the -fsSL flags.
-#
-#   This should work on Mac, Linux, and BSD systems. Please
-#   open an issue if you notice any bugs.
-#
-
-clear
-
-echo '
-   _____                 ____   _____ 
-  / ____|               / __ \ / ____|
- | |     __ _ ___  __ _| |  | | (___  
- | |    / _` / __|/ _` | |  | |\___ \ 
- | |___| (_| \__ \ (_| | |__| |____) |
-  \_____\__,_|___/\__,_|\____/|_____/ 
-                                      
-   --- Made by IceWhale with YOU ---
-'
 
 ###############################################################################
 # Golbals                                                                     #
 ###############################################################################
-readonly MINIMUM_DISK_SIZE_GB="5"
+readonly MINIMUM_DISK_SIZE_GB="4"
 readonly MINIMUM_MEMORY="400"
 readonly CASA_PATH=/casaOS/server
 readonly CASA_DEPANDS="curl smartmontools parted ntfs-3g"
@@ -47,8 +14,7 @@ readonly disk_size_gb=$((${disk_size_bytes} / 1024 / 1024))
 readonly casa_bin="casaos"
 readonly casa_tmp_folder="casaos"
 
-
-port=80
+port=9080
 install_path="/usr/local/bin"
 service_path=/usr/lib/systemd/system/casaos.service
 if [ ! -d "/usr/lib/systemd/system" ]; then
@@ -127,7 +93,7 @@ show() {
 #######################################
 
 function check_port() {
-    ss -tlp | grep $1\ 
+    ss -tlnp | grep $1\ 
 }
 
 function get_ipaddr() {
@@ -139,14 +105,8 @@ function get_ipaddr() {
 ###############################################################################
 
 # Exit path for non-root executions
-# if (($UID)); then
-#     show 1 "Root privileges required, please run this script with "sudo"."
-#     exit 1
-# fi
-
-#Check memory
-if [[ "${physical_memory}" -lt "${MINIMUM_MEMORY}" ]]; then
-    show 1 "requires atleast 1GB physical memory."
+if [ `whoami` != "root" ]; then
+    echo "sudo or root is required!"
     exit 1
 fi
 
@@ -157,27 +117,11 @@ if [[ "${disk_size_gb}" -lt "${MINIMUM_DISK_SIZE_GB}" ]]; then
 fi
 
 #Check Docker
-install_docker() {
-    if [[ -x "$(command -v docker)" ]]; then
-        show 0 "Docker already installed."
-    else
-        if [[ -r /etc/os-release ]]; then
-            lsb_dist="$(. /etc/os-release && echo "$ID")"
-        fi
-        if [[ $lsb_dist == "openwrt" ]]; then
-            show 1 "Openwrt, Please install docker manually."
-            exit 1
-        else
-            show 0 "Docker will be installed automatically."
-            curl -fsSL https://get.docker.com | bash
-            if [ $? -ne 0 ]; then
-                show 1 "Installation failed, please try again."
-                exit 1
-            else
-                show 0 "Docker Successfully installed."
-            fi
-        fi
-    fi
+install_docker(){
+  if [ ! -x "$(command -v docker)" ]; then
+    apt update && apt install docker.io -y
+    check_dockerimage
+  fi
 }
 
 #Install Depends
@@ -209,9 +153,6 @@ install_depends() {
 #Create CasaOS directory
 create_directory() {
     ((EUID)) && sudo_cmd="sudo"
-    #mkdir /casaOS
-    #mkdir /casaOS/server
-    #mkdir /casaOS/server/user
     $sudo_cmd mkdir -p $CASA_PATH
     $sudo_cmd mkdir -p /casaOS/logs/server
     $sudo_cmd mkdir -p /casaOS/util/shell
@@ -244,13 +185,9 @@ EOF
     show 0 "CasaOS service Successfully created."
 
     #Check Port
-    if [ -n "$(check_port :http)" ]; then
-        for PORT in {81..65536}; do
-            if [ ! -n "$(check_port :$PORT)" ]; then
-                port=$PORT
-                break
-            fi
-        done
+    if [ -n "$(check_port :$port)" ]; then
+      show 1 "Aborted, port $port is in used, please change that soft to other port"
+      return 1
     fi
 
     #replace port
@@ -270,11 +207,7 @@ EOF
         echo "==============================================================="
         echo " "
         echo "  CasaOS running at:"
-        if [[ "$port" -eq "80" ]]; then
-            echo "  http://$(get_ipaddr)"
-        else
-            echo "  http://$(get_ipaddr):$port"
-        fi
+        echo "  http://$(get_ipaddr):$port"
         echo " "
         echo "  Open your browser and visit the above address."
         echo " "
@@ -288,7 +221,6 @@ EOF
 }
 
 #install addon scripts
-
 install_addons() {
     ((EUID)) && sudo_cmd="sudo"
     show 2 "Installing CasaOS Addons"
@@ -324,18 +256,6 @@ install_casa() {
     *aarch64*)
         target_arch="arm64"
         ;;
-    *64*)
-        target_arch="amd64"
-        ;;
-    *86*)
-        target_arch="386"
-        ;;
-    *armv5*)
-        target_arch="arm-5"
-        ;;
-    *armv6*)
-        target_arch="arm-6"
-        ;;
     *armv7*)
         target_arch="arm-7"
         ;;
@@ -346,16 +266,8 @@ install_casa() {
     esac
 
     unameu="$(tr '[:lower:]' '[:upper:]' <<<$(uname))"
-    if [[ $unameu == *DARWIN* ]]; then
-        target_os="darwin"
-    elif [[ $unameu == *LINUX* ]]; then
+    if [[ $unameu == *LINUX* ]]; then
         target_os="linux"
-    elif [[ $unameu == *FREEBSD* ]]; then
-        target_os="freebsd"
-    elif [[ $unameu == *NETBSD* ]]; then
-        target_os="netbsd"
-    elif [[ $unameu == *OPENBSD* ]]; then
-        target_os="openbsd"
     else
         show 1 "Aborted, unsupported or unknown OS: $uname"
         return 6
