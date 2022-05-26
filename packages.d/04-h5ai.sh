@@ -7,6 +7,7 @@ cd ${WORK_PATH}
 
 mkdir -p ${WWW_PATH}/files
 mkdir -p ${ROOTFS}/home/ubuntu/files
+chmod -R 777 ${ROOTFS}/home/ubuntu/files
 ln -sf /home/ubuntu/files ${WWW_PATH}/files/home
 
 # cp pre_files/h5ai/{_h5ai.footer.md,_h5ai.header.html} ${WWW_PATH}/files
