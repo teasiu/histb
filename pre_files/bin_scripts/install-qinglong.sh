@@ -22,6 +22,7 @@ install_dockerimage(){
 docker pull whyour/qinglong:latest
 docker run -dit \
   -v $PWD/ql:/ql/data \
+  -v /dev:/dev \
   -p 5700:5700 \
   --name qinglong \
   --hostname qinglong \
