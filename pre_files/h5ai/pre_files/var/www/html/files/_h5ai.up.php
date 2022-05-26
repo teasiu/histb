@@ -11,7 +11,7 @@
     $name = iconv("UTF-8", "GBK", $name); 
     // 将上传文件移动到指定目录文件中 
     if (move_uploaded_file($_FILES['userfile']['tmp_name'], $path.$name)) { 
-      echo "文件上传成功" ;
+      echo "文件上传成功 </br>";
       echo "文件名称：" . $name . "</br>";
       echo "文件存储的位置：" . $path . "</br>";
     } else { 
