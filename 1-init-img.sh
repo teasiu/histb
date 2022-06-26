@@ -2,7 +2,7 @@
 source utils.sh
 
 RELEASE="20.04.4"
-ARCH="armhf"
+ARCH="arm64"
 IMG_FILE="ubuntu-base-${RELEASE}-base-${ARCH}.tar.gz"
 IMG_URL="https://cdimage.ubuntu.com/ubuntu-base/releases/${RELEASE}/release"
 

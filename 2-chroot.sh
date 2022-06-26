@@ -43,6 +43,8 @@ gpasswd -a ubuntu sudo
 echo -e "1234\n1234\n" | passwd ubuntu
 echo -e "1234\n1234\n" | passwd root
 echo "www-data ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+rm -f /etc/systemd/system/multi-user.target.wants/networkd-dispatcher.service
+echo "debug.exception-trace = 0" > /etc/sysctl.d/00-debug-exception-trace.conf
 visudo -c
 apt-get autoremove --purge -y
 apt-get autoclean -y
