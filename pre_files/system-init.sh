@@ -5,7 +5,7 @@
 # Required-Start:
 # Required-Stop:
 # Default-Start:     2 3 4 5
-# Default-Stop:      0 1 6                                   
+# Default-Stop:      0 1 6
 # Short-Description: self define auto start
 # Description:       self define auto start
 ### END INIT INFO
@@ -14,7 +14,7 @@ if [ ! -f /etc/first_init ]
 then
 	resize2fs /dev/mmcblk0p6 &
 	sudomainid=`date +%s%N | md5sum | cut -c 1-5`
-	sshport=`head -10 /dev/urandom | cksum | cut -c 1-5`
+	sshport=`shuf -i 10000-65535 -n1`
 	sed -i "s/xxxxx/$sudomainid/g" /etc/frp/frpc.ini
 	sed -i "s/ppppp/$sshport/g" /etc/frp/frpc.ini
 	sed -i "s/xxxxx/$sudomainid/g" /var/www/html/zhinan.html
