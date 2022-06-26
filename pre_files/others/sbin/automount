@@ -102,6 +102,9 @@ block,partition)
 			vfat)
 				extra_cmd="-o iocharset=utf8"
 			;;
+			*)
+				extra_cmd=""
+			;;
 			esac
 			LOGGER "Try to mount disk [/dev/$part]($fstype) on [/mnt/$part] ..."
 			mount -t $fstype /dev/$part /mnt/$part -o rw,defaults $extra_cmd && LOGGER "Successfully mounted disk [/dev/$part] on [/mnt/$part]" || {

@@ -33,6 +33,7 @@ install_dockerimage(){
 docker pull linuxserver/homeassistant:latest
 docker run -dit \
   -v ${config_path}:/config \
+  -v /dev:/dev \
   -p 8123:8123 \
   --name homeassistant \
   --hostname homeassistant \
