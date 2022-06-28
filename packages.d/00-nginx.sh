@@ -6,6 +6,10 @@ EOF
 cd ${WORK_PATH}
 mkdir -p ${ROOTFS}/etc/nginx/sites-available
 
+# disable logs
+sed -i 's/access_log .*;/access_log off;/g' ${ROOTFS}/etc/nginx/nginx.conf
+sed -i 's/error_log .*;/error_log \/dev\/null;/g' ${ROOTFS}/etc/nginx/nginx.conf
+
 # phpinfo
 cat <<EOT > ${WWW_PATH}/info.php
 <?php
