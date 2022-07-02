@@ -15,7 +15,7 @@
     <meta name="author" content="teasiu">
     <meta name="keywords" content="nas,hisilicon">
 
-    <title>海思芯片机顶盒 NAS</title>
+    <title>海思机顶盒 NAS</title>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/stroke.css">
@@ -106,7 +106,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="big-title text-center">
-                            <h1>机顶盒家用服务器 NAS</h1>
+                            <h1>海思机顶盒家庭服务器 NAS</h1>
                             <p class="lead">我是小盒子, 也是大世界</p>
                         </div>
                         <!-- end title -->
@@ -129,7 +129,7 @@
                             <li><a href="#line2">管理服务器文档</a></li>
                             <li><a href="#line3">内网穿透的场景</a></li>
                             <li><a href="#line4">Socks5 服务器</a></li>
-                            <li><a href="#line5">创建个人博客或家用公告栏</a></li>
+                            <li><a href="#line5">创建个人博客或家庭公告栏</a></li>
                             <li><a href="#line6">安装和设置网络共享</a></li>
                             <li><a href="#line7">其他功能与技巧</a>
                                 <ul class="nav">
@@ -177,9 +177,9 @@
 
                                         <hr>
                                         <div>
-                                            <p>盒子实测耗电仅约3瓦, 一杯奶茶的成本可以养它一年(24小时x365天)!
+                                            <p>盒子实测耗电仅约3瓦, 一杯奶茶的成本可以养它一年 (24h * 365天)!
                                                 <strong>就是这么优秀!</strong>
-                                                <br> 盒子运行 Linux Ubuntu 20.04.4 LTS 服务器系统, 配置了适量的常用软件, 完全可以满足个人家用需求
+                                                <br> 盒子运行 Linux Ubuntu 20.04.4 LTS 服务器系统, 同时配置了适量的常用软件, 完全可以满足个人家庭需求
                                             </p>
 
                                             <p>WOO, 动手打造属于你的空间吧! </p>
@@ -276,7 +276,7 @@
 
                         <div class="intro2 clearfix">
                             <p><i class="fa fa-wordpress"></i> 可以采用 FTP 或 SCP 等方式对服务器文档进行管理, 上传和下载
-                                <br> 初始账号密码 ubuntu 1234</a> </p>
+                                <br> 初始账号: ubuntu 密码: 1234</a> </p>
                         </div>
 
                         <hr>
@@ -451,7 +451,7 @@
 
                         <div class="row">
                             <div class="col-md-12 left-align">
-                                <h2 class="dark-text">创建个人博客或家用公告栏 <hr></h2>
+                                <h2 class="dark-text">创建个人博客或家庭公告栏 <hr></h2>
                             </div>
                             <!-- end col -->
                         </div>
@@ -467,7 +467,7 @@
                            
 			     <h4>保存和重装后还原博客数据库 </h4>
 			         <p>在 recoverbackup 重装系统之前, 一定要备份博客的数据库
-			         <br>数据库位置路径在 /var/www/html/blog/usr/623d62d5e5e96.db （db 名称可能会不相同）
+			         <br>数据库位置路径在 /var/www/html/blog/usr/623d62d5e5e96.db db 名称可能会不相同
 			         <br>操作如下: </p>
 			     <pre class="brush: html">
 			     mkdir -p /mnt/sda1/blog-data			在U盘建立数据库一个文件夹
@@ -825,7 +825,7 @@
 
                             <div class="col-md-8">
                                 <h4 id="line7_9">安装无盘网络启动 - </h4>
-                                <p>嗯, 这个在下一次更新推出期待吧</p>
+                                <p>嗯, 这个在下一次更新推出, 期待吧</p>
                             </div>
                             <!-- end col -->
                         </div>
@@ -838,7 +838,7 @@
 
                         <div class="row">
                             <div class="col-md-12 left-align">
-                                <h2 class="dark-text">挂载外置设备支持<hr></h2>
+                                <h2 class="dark-text">挂载外置设备<hr></h2>
                             </div>
                             <!-- end col -->
                         </div>
@@ -846,30 +846,30 @@
 
                         <div class="row">
                             <div class="col-md-6">
-                                <p>系统添加了自动挂载的脚本, 插入U盘或移动硬盘即可自动挂载到 /mnt 下, 插入TF卡, 则自动挂载为 /mnt/mmcblk1p1</a></p>
-                                <strong>强烈建议将U盘格式化为 ext4 文件系统</strong>
+                                <p>系统支持自动挂载外置设备, 插入 U盘 或移动硬盘即可自动挂载到 /mnt 下, 插入 TF卡讲自动挂载到 /mnt/mmcblk1p1</a></p>
+                                <ul>
+                                    <li>* 如果没有显示设备请尝试重新插拨, 查看是否自动挂载</li>
+                                    <li>* 部分机型可能需要插上USB口以后热启动上电才会被盒子识别</li>
+									<li>* <strong>连接外置 3.5吋 移动硬盘盒请确保供电正常</strong></li>
+                                </ul>
+                                <strong>强烈建议将 U盘 或 TF卡 格式化为 ext4 文件系统</strong>
                                 <ul>
                                     <li>* 部分盒子建议插到靠近电源的USB口</li>
                                     <li>* 建议使用 Linux 自带的 fdisk 分区命令进行重新分区</li>
-                                    <li>* 使用 mkfs.ext4 /dev/sdx 命令格式化</li>
+                                    <li>* 也可以使用 mkfs.ext4 /dev/sd? 命令格式化</li>
+									<li>* <strong>警告: (符号 ? 请自行匹配到对应的外置设备序号, 如 sda sdb)</strong></li>
                                 </ul>
-                                <strong>外置大硬盘盒可能需要注意供电是否正常</strong>
-                                <ul>
-                                    <li>* 尝试重新插拨, 查看是否自动挂载</li>
-                                    <li>* 部分机型可能需要插上USB口以后热启动（上电）才会被盒子识别</li>
-                                </ul>
-
                             </div>
 
                             <div class="col-md-6">
-                                <strong>格式化USB外置储存设备指南</strong>
+                                <strong>使用 fdisk 工具格式化外置储存设备</strong>
                                 <ul>
                                     <li><pre class="brush: html">
-			    		umount /mnt/sda1	# 卸载分区 (根据情况修改, 有时并非 /mnt/sda1)
+			    		umount -l /mnt/sda1	# 卸载分区 (根据情况修改, 有时并非 /mnt/sda1)
 			    		fdisk -l			# 查看磁盘情况
 			    		fdisk /dev/sda		# 进入命令行分区界面 (根据情况修改)
-			    		（注意, 这里是 sda 而不是 sda1）
-			    			输入 o 设置新分区为msdos格式
+			    		(注意, 这里是 sda 而不是 sda1)
+			    			输入 o 设置新分区为 msdos 格式
 			    			输入 n 建立新分区
 			    			接着输入 p 建立主分区
 			    			接着默认 2048 字节扇区头和自动的扇区尾
@@ -900,9 +900,11 @@
                             <div class="col-md-6">
                                 <strong>Aria2 直链下载</strong>
                                 <ul>
-                                    <li>* 默认位置都是 /home/ubuntu/downloads</li>
+									<li>* 访问地址 http://IP/ariang</li>
+                                    <li>* 默认下载位置 /home/ubuntu/downloads</li>
                                     <li>* 请自行修改挂载U盘下载位置</li>
                                     <li>* 例如先在U盘建立一个文件夹 aria2</li>
+									<li>* <strong>更新 Tracker 列表(BT 下载提速): 打开终端, 执行指令 update-tracker.sh, 按照提示操作即可</strong></li>
                             <div class="col-md-6">
                                 <a href="images/upload/aria2.png" data-rel="prettyPhoto"><img src="images/upload/aria2.png" alt="" class="img-responsive img-thumbnail"></a>
                             </div>
@@ -913,9 +915,8 @@
                             <div class="col-md-6">
                                 <strong>Transmission 种子下载</strong>
                                 <ul>
-                                    <li>* 请自行修改挂载U盘下载位置</li>
-                                    <li>* 登陆帐号密码是 <strong>admin admin</strong></li>
-                                    <li>* 例如先在U盘建立一个文件夹 transmission</li>
+                                    <li>* 请自行修改下载位置</li>
+                                    <li>* 默认登陆帐号 <strong>admin</strong> 密码 <strong>admin</strong></li>
                             <div class="col-md-6">
                                 <a href="images/upload/transmission.png" data-rel="prettyPhoto"><img src="images/upload/transmission.png" alt="" class="img-responsive img-thumbnail"></a>
                             </div>
@@ -928,6 +929,7 @@
                             /etc/init.d/transmission-daemon stop
                             # 修改密码
                             # 编辑配置文件: vi /etc/transmission-daemon/settings.json
+							# 找到以下内容:
                             "rpc-password": "{1e82c73f8f4b5c3ba4e2d94227fc19dc3442abf7nSWuZtsb",
                             "rpc-port": 9091,
                             "rpc-url": "/transmission/",
@@ -960,7 +962,7 @@
                                     <li><strong>install-portainer.sh</strong></li>
                                     <li>3. 内置了特斯拉监控程序的安装脚本</li>
                                     <li><strong>install-teslamate1.sh</strong></li>
-                                    <li>4. 安装电影播放削刮器（测试中）</li>
+                                    <li>4. 安装电影播放削刮器 (测试中)</li>
                                     <li>Docker 很好用, 但并不是全部装上榨干就好, 而是适合自己用就好</li>
                                     <li>如果你有好的建议, 请到论坛贴出你的脚本, 有机会被采纳</li>
                                 </ul>
@@ -971,7 +973,7 @@
                                 <ul>
                                     <li><pre class="brush: html">
                                     	docker images		列出已安装的镜像
-                                    	docker ps		列出正在运行的容器
+                                    	docker ps			列出正在运行的容器
                                     	docker ps -a		列出所有容器，包括未运行
                                     	docker stop xxx		停止 xxx 容器
                                     	docker rm xxx		删除 xxx 容器
