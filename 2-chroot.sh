@@ -18,7 +18,6 @@ mknod /dev/zero    c 1   5
 mknod /dev/random    c 1   8
 mknod /dev/tty    c 5   0
 apt-get update
-apt-get upgrade -y
 apt-get install -y jq ntfs-3g smartmontools usbutils dnsutils network-manager \
 locales wget curl vim iputils-ping bash-completion \
 ssh net-tools sudo \

@@ -79,11 +79,12 @@ fi
 echo "移除旧 BT Tracker-$tracker_type 列表 ..."
 sed -i "/bt-tracker=/d" $config_file
 echo "写入新 BT Tracker-$tracker_type 列表 ..."
-echo "bt-tracker=$(cat $tracker_tmpfile)" >> $config_file
+echo -e "\nbt-tracker=$(cat $tracker_tmpfile)" >> $config_file
 
 if [[ $(systemctl is-enabled aria2c 2> /dev/null) == enabled ]]
 then
-	systemctl start aria2c 2> /dev/null
+	echo "重启 Aria2 服务 ..."
+	systemctl restart aria2c 2> /dev/null
 fi
 
 exit
