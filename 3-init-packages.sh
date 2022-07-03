@@ -75,6 +75,7 @@ apt_clear() {
 	apt-get autoremove --purge -y
 	apt-get autoclean -y
 	apt-get clean -y
+  rm /root/.bash_history
 EOF
 }
 
