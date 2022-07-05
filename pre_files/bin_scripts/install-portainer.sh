@@ -25,6 +25,7 @@ install_dockerimagep(){
 	--network=host \
 	-v /var/run/docker.sock:/var/run/docker.sock \
 	-v /opt/Portainer:/data \
+	-v /dev:/dev \
 	portainer/portainer-ce
 }
 local_ip=$(ifconfig eth0 | grep '\<inet\>'| grep -v '127.0.0.1' | awk '{ print $2}' | awk 'NR==1')
