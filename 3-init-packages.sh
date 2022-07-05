@@ -74,8 +74,8 @@ apt_clear() {
 	cat << EOF | chroot ${ROOTFS}
 	apt-get autoremove --purge -y
 	apt-get autoclean -y
-  apt-get clean -y
-  rm /root/.bash_history > /dev/null
+	apt-get clean -y
+	rm /root/.bash_history > /dev/null
 EOF
 }
 
