@@ -61,6 +61,11 @@ install_samba(){
   browseable = yes
 
 EOT
+
+  # limit log size
+  sed -ri -e '/^\s+size\s+.*/d' /etc/logrotate.d/samba
+  sed -ri -e 's/^(\s+)(rotate\s+).*/\1\21\n\1size 1M/g' /etc/logrotate.d/samba
+
   systemctl restart smbd
 }
 check_samba

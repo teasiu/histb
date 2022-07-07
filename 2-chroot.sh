@@ -43,6 +43,8 @@ echo -e "1234\n1234\n" | passwd ubuntu
 echo -e "1234\n1234\n" | passwd root
 echo "www-data ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 visudo -c
+sed -ri -e '/^\s+size\s+.*/d' /etc/logrotate.d/*
+sed -ri -e 's/^(\s+)(rotate\s+).*/\1\21\n\1size 1M/g' /etc/logrotate.d/*
 apt-get autoremove --purge -y
 apt-get autoclean -y
 apt-get clean -y
