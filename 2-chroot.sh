@@ -45,6 +45,8 @@ echo "www-data ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 rm -f /etc/systemd/system/multi-user.target.wants/networkd-dispatcher.service
 echo "debug.exception-trace = 0" > /etc/sysctl.d/00-debug-exception-trace.conf
 visudo -c
+sed -ri -e '/^\s+size\s+.*/d' /etc/logrotate.d/*
+sed -ri -e 's/^(\s+)(rotate\s+).*/\1\21\n\1size 1M/g' /etc/logrotate.d/*
 apt-get autoremove --purge -y
 apt-get autoclean -y
 apt-get clean -y
