@@ -16,6 +16,7 @@ check_dockerimage(){
     echo "青龙镜像已存在，请不要重复安装"
   else
     install_dockerimage
+    echo 123 > /etc/qlinstlled
   fi
 }
 install_dockerimage(){
@@ -31,7 +32,7 @@ docker run -dit \
 }
 local_ip=$(ifconfig eth0 | grep '\<inet\>'| grep -v '127.0.0.1' | awk '{ print $2}' | awk 'NR==1')
 if [ -x "$(command -v docker)" ]; then
-  echo "docker已安装，请不要重复安装." >&2
+  echo "docker已安装." >&2
   check_dockerimage
 else
   apt update && apt install docker.io -y

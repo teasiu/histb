@@ -14,6 +14,7 @@
 	<body>
 <?php
 	$lanip=shell_exec("ifconfig eth0 | grep '\<inet\>'| grep -v '127.0.0.1' | awk '{ print $2}' | awk 'NR==1' 2>&1");
+	$ckql=shell_exec("cat /etc/qlinstalled");
 ?>
 		<div id="wrap">
 			<div id="top">
@@ -79,7 +80,7 @@
 							<a href="http://<?php echo $lanip ?>:9000" target="_blank"><img class="shake" src="img/png/docker.png" /><strong>Docker面板</strong></a>
 						</li>
 						<li>
-							<a href="http://<?php echo $lanip ?>:5700" target="_blank"><img class="shake" src="img/png/ql.png" /><strong>青龙面板</strong></a>
+							<a href="javascript:disp_alert('<?php echo $lanip ?>',<?php echo $ckql ?>)"><img class="shake" src="img/png/ql.png" /><strong>青龙面板</strong></a>
 						</li>
 						<li>
 							<a href="http://<?php echo $lanip ?>:8123" target="_blank"><img class="shake" src="img/png/homeass.png" /><strong>智能家居</strong></a>
@@ -105,9 +106,13 @@
 		</div>
 		<script src="js/jquery.min.js"></script>
 		<script type="text/javascript">
-			function disp_alert()
+			function disp_alert(lanip,ql)
 			{
-			alert("暂未映射外网端口！请在内网操作.")
+			 if(ql){
+			 	window.open("http://"+ lanip+":5700")
+			 }else{
+			 	alert("青龙面板未安装,请在终端运行以下命令一键安装\n install-qinglong.sh")
+			 }
 			}
 		</script>
 	</body>
