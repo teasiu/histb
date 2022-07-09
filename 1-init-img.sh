@@ -8,7 +8,7 @@ if [ -n "$1" ]; then
             export ARCH="arm64"
             ;;
         *)
-            exit 1 "usage: 1-init-img.sh [-64]"
+            _exit 1 "usage: 1-init-img.sh [-64]"
             ;;
     esac
 fi
