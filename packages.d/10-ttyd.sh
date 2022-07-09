@@ -1,6 +1,14 @@
 # install ttyd
 
-ttyd_file="ttyd.armhf"
+case "$ARCH" in
+    armhf)
+        export ttyd_file="ttyd.armhf"
+        ;;
+    arm64)
+        export ttyd_file="ttyd.aarch64"
+        ;;
+esac
+
 ttyd_url="https://git.histb.com/tsl0922/ttyd/releases/download/1.6.3/${ttyd_file}"
 
 if [ ! -f ${DOWNLOAD_PATH}/${ttyd_file} ]; then
@@ -8,7 +16,6 @@ if [ ! -f ${DOWNLOAD_PATH}/${ttyd_file} ]; then
 fi
 
 cd ${WORK_PATH}
-# cp -a pre_files/ttyd.service ${ROOTFS}/etc/systemd/system
 chmod 644 ${ROOTFS}/etc/systemd/system/ttyd.service
 cp -a ${DOWNLOAD_PATH}/${ttyd_file} ${ROOTFS}/usr/bin/ttyd
 chmod +x ${ROOTFS}/usr/bin/ttyd

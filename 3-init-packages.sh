@@ -1,12 +1,12 @@
 #!/bin/bash
+source utils.sh
 
+ARCH=$(awk 'NR==2' target_arch 2> /dev/null)
 WORK_PATH=$(cd $(dirname $0) && pwd )
 ROOTFS="${WORK_PATH}/rootfs"
 WWW_PATH="${ROOTFS}/var/www/html"
 DOWNLOAD_PATH="${WORK_PATH}/downloads"
 PKG_SCRIPT_PATH="${WORK_PATH}/packages.d"
-
-source ${WORK_PATH}/utils.sh
 
 mkdir -p ${WWW_PATH}
 mkdir -p ${DOWNLOAD_PATH}
@@ -15,17 +15,14 @@ wget_cmd() {
 	wget --no-check-certificate --timeout 15 -4 --tries=5 -P ${DOWNLOAD_PATH} $* || exit 1
 }
 
-copy_pre_files() {
+copy_files() {
 	pkg_name=$1
-	if [ -d ${WORK_PATH}/pre_files/${pkg_name}/pre_files ]; then
-		cp -a ${WORK_PATH}/pre_files/${pkg_name}/pre_files/* ${ROOTFS}
+	copy_dir=$2
+	if [ -d ${WORK_PATH}/package_files/${pkg_name}/${copy_dir}/common ]; then
+		cp -a ${WORK_PATH}/package_files/${pkg_name}/${copy_dir}/common/* ${ROOTFS}
 	fi
-}
-
-copy_post_files() {
-	pkg_name=$1
-	if [ -d ${WORK_PATH}/pre_files/${pkg_name}/post_files ]; then
-		cp -a ${WORK_PATH}/pre_files/${pkg_name}/post_files/* ${ROOTFS}
+	if [ -d ${WORK_PATH}/package_files/${pkg_name}/${copy_dir}/${ARCH} ]; then
+		cp -a ${WORK_PATH}/package_files/${pkg_name}/${copy_dir}/${ARCH}/* ${ROOTFS}
 	fi
 }
 
@@ -39,12 +36,12 @@ install_package() {
         if [ -f ${script_file} ]; then
             if [ ! ${pkg_installed} ]; then
                 # copy pre files
-                copy_pre_files $pkg_name
+                copy_files $pkg_name pre_files
 
                 source ${script_file}
 
                 # copy posted files
-                copy_post_files $pkg_name
+                copy_files $pkg_name post_files
 
                 echo "${pkg_name} executed"
                 export ${pkg_name}_installed="true"

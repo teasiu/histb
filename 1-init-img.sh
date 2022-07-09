@@ -1,8 +1,19 @@
 #!/bin/bash
 source utils.sh
 
-RELEASE="20.04.4"
 ARCH="armhf"
+if [ -n "$1" ]; then
+    case "$1" in
+        -64)
+            export ARCH="arm64"
+            ;;
+        *)
+            exit 1 "usage: 1-init-img.sh [-64]"
+            ;;
+    esac
+fi
+
+RELEASE="20.04.4"
 IMG_FILE="ubuntu-base-${RELEASE}-base-${ARCH}.tar.gz"
 IMG_URL="https://cdimage.ubuntu.com/ubuntu-base/releases/${RELEASE}/release"
 

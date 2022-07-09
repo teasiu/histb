@@ -1,0 +1,111 @@
+#!/bin/bash
+
+local_ip=$(ifconfig eth0 | grep '\<inet\>'| grep -v '127.0.0.1' | awk '{ print $2}' | awk 'NR==1')
+retries=3
+
+if [[ $(whoami) != root ]]; then
+	echo "请使用 root 用户登录或执行 sudo $0"
+	exit 1
+fi
+
+if [[ ! $(command -v docker) ]]; then
+	echo "未安装 Docker, 即将开始安装 ..."
+	apt update
+	apt install docker.io -y
+	if [[ $? != 0 ]]
+	then
+		apt clean
+		echo "Docker 安装失败 ..."
+		exit
+	fi
+	apt clean
+fi
+
+check_container(){
+	docker inspect $1 > /dev/null 2>&1
+	if [[ $? == 0 ]];then
+		echo "容器: [$1] 已存在, 请不要重复安装!"
+		return 1
+	else
+		return 0
+	fi
+}
+
+get_var() {
+	var=$1
+	shift
+	if [[ $(echo $1 | grep =) ]];then
+		echo $1 | cut -d '=' -f2
+	else
+		echo $2
+	fi
+}
+
+docker_install() {
+	local msg=$1
+	shift
+	local cmd="$*"
+	while [[ $1 ]];do
+		case $1 in 
+		--name*)
+			name=$(get_var name $*)
+		;;
+		--restart*)
+			restart=$(get_var restart $*)
+		;;
+		esac
+		img=$1
+		shift
+	done
+	check_container $name
+	[[ $? != 0 ]] && echo $msg && exit 1
+	echo "开始拉取镜像 $img ..."
+	for i in $(seq 1 $retries);do
+		docker pull $img
+		if [[ $? == 0 ]];then
+			break
+		else
+			if [[ $i == $retries ]];then
+				echo "镜像拉取失败, 请检查网络后再试 ..."
+				exit 1
+			fi
+		fi
+	done
+	echo "镜像拉取成功, 开始安装容器 $name ..."
+	echo "容器名称: $name
+重启策略: $restart"
+	$cmd
+	if [[ $? == 0 ]];then
+		echo $msg
+	else
+		echo "容器创建失败 ..."
+	fi
+}
+
+case $1 in
+Portainer)
+	docker_install \
+		"容器管理工具已经安装, 请在浏览器打开 http://$local_ip:9000 进入设置" \
+		docker run -dit \
+		--name Portainer \
+		--restart=always \
+		--network=host \
+		-v /var/run/docker.sock:/var/run/docker.sock \
+		-v /opt/Portainer:/data \
+		portainer/portainer-ce
+;;
+qinglong)
+	docker_install \
+		"青龙面板已经安装, 首次安装请在 1 分钟后浏览器打开 http://$local_ip:5700 进入设置" \
+		docker run -dit \
+		-v /opt/ql:/ql/data \
+		--network=bridge \
+		-p 5700:5700 \
+		--name qinglong \
+		--hostname qinglong \
+		--restart unless-stopped \
+		whyour/qinglong:latest
+;;
+esac
+
+exit 0

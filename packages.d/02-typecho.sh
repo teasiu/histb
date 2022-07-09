@@ -17,9 +17,3 @@ mv build blog
 chmod 777 -R blog
 mv index.nginx-debian.html index3.html
 cd ${WORK_PATH}
-
-# cp pre_files/wiki/nginx_default ${ROOTFS}/etc/nginx/sites-available/default
-# cp pre_files/wiki/index.html ${WWW_PATH}
-# cp pre_files/wiki/index2.html ${WWW_PATH}
-# cp pre_files/wiki/{kms.html,teasiu-wx.jpg,ec6108v9.jpg} ${WWW_PATH}/
-

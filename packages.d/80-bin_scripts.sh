@@ -1,6 +1,6 @@
 # extra scripts
 
-extra_scripts_path=${WORK_PATH}/pre_files/bin_scripts
+extra_scripts_path=${WORK_PATH}/package_files/bin_scripts
 
 
 extra_scripts=`find ${extra_scripts_path}|grep "\.sh$"`
