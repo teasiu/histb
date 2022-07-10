@@ -28,5 +28,5 @@ EOT
 sed -i "404c security.limit_extensions = .php .php3 .php4 .php5 .php7 .html" ${ROOTFS}/etc/php/7.4/fpm/pool.d/www.conf
 
 # limit log size
-sed -ri -e '/^\s+size\s+.*/d' /etc/logrotate.d/php7.4-fpm
-sed -ri -e 's/^(\s+)(rotate\s+).*/\1\21\n\1size 1M/g' /etc/logrotate.d/php7.4-fpm
+sed -ri -e '/^\s+size\s+.*/d' ${ROOTFS}/etc/logrotate.d/php7.4-fpm
+sed -ri -e 's/^(\s+)(rotate\s+).*/\1\21\n\1size 1M/g' ${ROOTFS}/etc/logrotate.d/php7.4-fpm
