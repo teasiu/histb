@@ -72,7 +72,7 @@ apt_clear() {
 	apt-get autoremove --purge -y
 	apt-get autoclean -y
 	apt-get clean -y
-	rm /root/.bash_history 2> /dev/null
+	rm /root/.bash_history >/dev/null 2>&1
 EOF
 }
 
