@@ -16,7 +16,7 @@ check_dockerimage(){
     echo "青龙镜像已存在，请不要重复安装"
   else
     install_dockerimage
-    echo 123 > /etc/qlinstlled
+    echo 123 > /etc/qlinstalled
   fi
 }
 install_dockerimage(){

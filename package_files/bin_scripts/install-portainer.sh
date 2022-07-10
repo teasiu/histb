@@ -16,6 +16,7 @@ check_dockerimagep(){
     echo "镜像已存在，请不要重复安装"
   else
     install_dockerimagep
+    echo 123 > /etc/pdinstalled
   fi
 }
 install_dockerimagep(){

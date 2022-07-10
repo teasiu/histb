@@ -26,6 +26,7 @@ check_dockerimage(){
     echo "homeassistant镜像已存在，请不要重复安装"
   else
     install_dockerimage
+    echo 123 > /etc/hainstalled
   fi
 }
 
