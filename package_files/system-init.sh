@@ -12,17 +12,14 @@
 
 if [ ! -f /etc/first_init ]
 then
-	resize2fs /dev/mmcblk0p6 &
-	dmesg | grep "CPU: hi" | awk -F ':[ ]' '/CPU/{printf ($2)}' > /etc/regname
+    resize2fs /dev/mmcblk0p6 &
+    dmesg | grep "CPU: hi" | awk -F ':[ ]' '/CPU/{printf ($2)}' > /etc/regname
+    echo `date +%s%N | md5sum | cut -c 1-5` > /etc/first_init
 
-	init_scripts=`find /etc/first_init.d|grep "\.sh$"`
-	for i in $init_scripts ;do
-	    source $i
-	done
-fi
-if [ ! -f /etc/first_init ]
-then
-	echo "resize2fs /dev/mmcblk0p6" > /etc/first_init
+    init_scripts=`find /etc/first_init.d|grep "\.sh$"`
+    for i in $init_scripts ;do
+        source $i
+    done
 fi
 if [ ! -f /swapfile ]
 then
