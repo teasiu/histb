@@ -618,9 +618,11 @@
 
                             <div class="col-md-8">
                                 <h4 id="line7_3">设置静态IP - </h4>
+                                <p>vi /etc/network/interfaces.d/eth0	# 修改配置文件
+                                <br>替换为下面的内容 (网关和IP必须按实际情况自行修改)
+                                <br>否则你将可能不得不重新刷机，承担修复 IP 无法访问的风险。
+                                </p>
                                 <p><pre class="brush: html">
-					vi /etc/network/interfaces.d/eth0	# 修改配置文件
-					# 增加下面的内容 (实际内容可按需修改)
 					auto eth0
 					iface eth0 inet static
 					address 192.168.1.10
@@ -629,7 +631,7 @@
 					broadcast 192.168.1.255
 					gateway 192.168.1.1
 					dns-nameservers 192.168.1.1
-					pre-up ifconfig eth0 hw ether 00:11:22:33:44:66
+					pre-up ifconfig eth0 hw ether 00:11:22:33:44:55
 					</pre>
 					</p>
                             </div>
