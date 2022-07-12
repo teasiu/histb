@@ -18,6 +18,7 @@ chown nobody:nogroup ${ROOTFS}/home/ubuntu/downloads
 unzip -o -q ${DOWNLOAD_PATH}/${aria2_file} -d ${WWW_PATH}/ariang
 touch ${ROOTFS}/usr/local/aria2/aria2.session
 chmod 777 ${ROOTFS}/usr/local/aria2/aria2.session
+chmod 755 ${ROOTFS}/usr/local/bin/update-tracker.sh
 chmod 644 ${ROOTFS}/etc/systemd/system/aria2c.service
 
 cat << EOF | chroot ${ROOTFS}
