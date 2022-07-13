@@ -11,7 +11,7 @@ if [ ! -f "/etc/debian_version" ]; then
     exit 1
 fi
 check_gitweb(){
-  if [ -f /etc/nginx/site-available/gitweb ] ;then
+  if [ -f /etc/nginx/sites-available/gitweb ] ;then
     echo "gitweb软件已存在，请不要重复安装"
     exit 1
   else
