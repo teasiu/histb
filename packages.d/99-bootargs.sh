@@ -45,7 +45,8 @@ fi
 
 cd ${WORK_PATH}
 echo "hi3798$bootargs" > target
-cp -a package_files/bootargs/bootargs4-$bootargs.bin ${ROOTFS}/usr/bin/bootargs4.bin
+[ "$ARCH" = "arm64" ] && is64="-64"
+cp -a package_files/bootargs/bootargs4-${bootargs}${is64}.bin ${ROOTFS}/usr/bin/bootargs4.bin
 cp -a package_files/bootargs/recoverbackup_${ARCH} ${ROOTFS}/usr/bin/recoverbackup
 chmod 777 ${ROOTFS}/usr/bin/recoverbackup
 echo "hi3798$bootargs" > ${ROOTFS}/etc/hostname
