@@ -11,8 +11,7 @@ if [ ! -f "/etc/debian_version" ]; then
     exit 1
 fi
 check_gitweb(){
-  type gitweb > /dev/null 2>&1
-  if [ $? -eq 0 ] ;then
+  if [ -f /etc/nginx/site-available/gitweb ] ;then
     echo "gitweb软件已存在，请不要重复安装"
     exit 1
   else
@@ -22,6 +21,7 @@ check_gitweb(){
 install_gitweb(){
   apt update && apt install git gitweb nginx fcgiwrap -y
   systemctl stop nginx
+  chmod +x /usr/share/bak/gitweb/*
   cp -a /usr/share/bak/gitweb/nginx_gitweb /etc/nginx/sites-available/gitweb
   ln -sf /etc/nginx/sites-{available,enabled}/gitweb
   cp -a /usr/share/bak/gitweb/gitweb.cgi /usr/share/gitweb
