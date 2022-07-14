@@ -6,5 +6,5 @@ cp -a package_files/others/sbin/${ARCH}/* ${ROOTFS}/sbin
 
 chmod 777 -R ${ROOTFS}/etc/profile.d
 
-sed -i "s/ports.ubuntu.com/mirrors.aliyun.com/g" ${ROOTFS}/etc/apt/sources.list
+sed -i "s/ports.ubuntu.com/repo.huaweicloud.com/g" ${ROOTFS}/etc/apt/sources.list
 echo "$(date +%Y%m%d)" > ${ROOTFS}/etc/nasversion
