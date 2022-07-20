@@ -39,4 +39,4 @@ else
   check_dockerimage
 fi
 sleep 1
-echo "青龙面板已经安装，首次安装请1分钟后浏览器打开http://$local_ip:5700进入设置"
+echo "青龙面板已经安装，首次安装请1分钟后浏览器打开 http://$local_ip:5700 进入设置"

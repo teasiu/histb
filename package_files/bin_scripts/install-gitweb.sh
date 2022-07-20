@@ -28,6 +28,8 @@ install_gitweb(){
   cp -a /usr/share/bak/gitweb/indextext.html /usr/share/gitweb
   cp -a /usr/share/bak/gitweb/gitweb.conf /etc
   systemctl start nginx
+  echo "gitweb 仓库已安装，浏览器打开 http://$local_ip:8011 访问"
 }
+local_ip=$(ifconfig eth0 | grep '\<inet\>'| grep -v '127.0.0.1' | awk '{ print $2}' | awk 'NR==1')
 check_gitweb
 

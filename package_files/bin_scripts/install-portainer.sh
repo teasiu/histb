@@ -31,11 +31,11 @@ install_dockerimagep(){
 }
 local_ip=$(ifconfig eth0 | grep '\<inet\>'| grep -v '127.0.0.1' | awk '{ print $2}' | awk 'NR==1')
 if [ -x "$(command -v docker)" ]; then
-  echo "docker已安装，请不要重复安装." >&2
+  echo "docker已安装." >&2
   check_dockerimagep
 else
   apt update && apt install docker.io -y
   check_dockerimagep
 fi
 sleep 1
-echo "容器管理工具已经安装，浏览器打开http://$local_ip:9000进入设置"
+echo "容器管理工具已经安装，浏览器打开 http://$local_ip:9000 进入设置"
