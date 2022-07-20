@@ -18,14 +18,14 @@ mknod /dev/zero    c 1   5
 mknod /dev/random    c 1   8
 mknod /dev/tty    c 5   0
 apt-get update
-apt-get install -y jq ntfs-3g smartmontools usbutils dnsutils network-manager \
+DEBIAN_FRONTEND=noninteractive apt-get install -y jq ntfs-3g smartmontools usbutils dnsutils network-manager \
 locales wget curl vim iputils-ping bash-completion \
 ssh net-tools sudo \
 cron ethtool zip ifupdown htop rsyslog dialog resolvconf
 sed -i -e 's/#PasswordAuthentication/PasswordAuthentication/g' /etc/ssh/sshd_config
 echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
-echo "Asia/Shanghai" > /etc/timezone
-cp -a /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+dpkg-reconfigure -f noninteractive tzdata
 echo "en_US.UTF-8 UTF-8
 zh_CN.UTF-8 UTF-8
 zh_CN.GB2312 GB2312
