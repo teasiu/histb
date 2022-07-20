@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OUTPUT="Ubuntu-$(awk 'NR==1' target_arch 2> /dev/null)-$(awk 'NR==2' target_arch 2> /dev/null)-$(awk 'NR==1' target 2> /dev/null)-$(date +%Y%m%d)-MD5.img"
+OUTPUT="Ubuntu-$(awk 'NR==1' target_arch 2> /dev/null)-$(awk 'NR==2' target_arch 2> /dev/null)-hi3798$(awk 'NR==1' target 2> /dev/null)-$(date +%Y%m%d)-MD5.img"
 TMPFS="tmp"
 echo "Firmware Model: $OUTPUT"
 echo "Firmware will output into: $(pwd), Please wait ..."

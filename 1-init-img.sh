@@ -2,15 +2,92 @@
 source utils.sh
 
 ARCH="armhf"
-if [ -n "$1" ]; then
-    case "$1" in
-        -64)
-            export ARCH="arm64"
+
+usage() {
+    cat <<-EOF
+Usage: usage: 1-init-img.sh [-mv100|mv200|mv300] [-64]
+EOF
+    _exit $1
+}
+
+while [ $# -gt 0 ]; do
+    if [ -z "$1" ]; then
+        usage 0
+    else
+        case "$1" in
+            --help | -h)
+                usage 0
+                ;;
+            -mv100)
+                model="mv100"
+                shift
+                ;;
+            -mv200)
+                model="mv200"
+                shift
+                ;;
+            -mv300)
+                model="mv300"
+                shift
+                ;;
+            -64)
+                ARCH="arm64"
+                shift
+                ;;
+            *)
+                usage 1
+                ;;
+        esac
+    fi
+done
+
+if [ -z "$model" ]; then
+    if [ "$ARCH" = "armhf" ]; then
+        echo "
+        1. mv100
+        2. mv200
+        3. mv300
+        "
+        while :; do
+        read -p "你想要定制哪个版本？ " CHOOSE
+        case $CHOOSE in
+            1)
+                model="mv100"
+            break
             ;;
-        *)
-            _exit 1 "usage: 1-init-img.sh [-64]"
+            2)
+                model="mv200"
+            break
             ;;
-    esac
+            3)
+                model="mv300"
+            break
+            ;;
+        esac
+        done
+    else
+        echo "
+        1. mv200
+        2. mv300
+        "
+        while :; do
+        read -p "你想要定制哪个版本？ " CHOOSE
+        case $CHOOSE in
+            1)
+                model="mv200"
+            break
+            ;;
+            2)
+                model="mv300"
+            break
+            ;;
+        esac
+        done
+    fi
+fi
+
+if [ "$model" = "mv100" ] && [ "$ARCH" = "arm64" ]; then
+    _exit 1 "mv100 haven't 64bit version, plese execute again"
 fi
 
 RELEASE="20.04.4"
@@ -34,3 +111,4 @@ then
 fi
 tar -zxvf downloads/${IMG_FILE} -C rootfs
 echo -e "$RELEASE\n$ARCH" > target_arch
+echo "$model" > target
