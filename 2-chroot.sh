@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "nameserver 223.5.5.5" >> rootfs/etc/resolv.conf
-#sed -i "s/ports.ubuntu.com/repo.huaweicloud.com/g" rootfs/etc/apt/sources.list
+sed -i "s/ports.ubuntu.com/repo.huaweicloud.com/g" rootfs/etc/apt/sources.list
 echo "127.0.0.1 localhost" > rootfs/etc/hosts
 cp -a package_files/system-init.sh rootfs/etc/init.d
 mkdir -p rootfs/etc/first_init.d
