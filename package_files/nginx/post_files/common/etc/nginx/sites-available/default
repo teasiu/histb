@@ -41,8 +41,7 @@ server {
 	root /var/www/html;
 
 	# Add index.php to the list if you are using PHP
-	#index index.html index.php index.htm /files/_h5ai/public/index.php;
-	index index.html index.php index.htm index3.html;
+	index index.html index.php index.htm /files/_h5ai/public/index.php index3.html;
 	server_name _;
 
 	location / {
