@@ -1,0 +1,14 @@
+<li>
+    <a href="javascript:disp_ha('<?php echo $lanip ?>',<?php $ckha=shell_exec("cat /etc/hainstalled");echo $ckha ?>)"><img class="shake" src="img/png/homeass.png" /><strong>智能家居</strong></a>
+</li>
+
+<script type="text/javascript">
+    function disp_ha(lanip,ha)
+    {
+     if(ha){
+        window.open("http://"+ lanip+":8123");
+     }else{
+        alert("智能家居尚未安装,请在终端运行以下命令一键安装\n install-homeassistant.sh")
+     }
+    }
+</script>

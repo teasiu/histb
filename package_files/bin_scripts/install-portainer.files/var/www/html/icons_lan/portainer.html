@@ -1,0 +1,14 @@
+<li>
+    <a href="javascript:disp_pd('<?php echo $lanip ?>',<?php $ckpd=shell_exec("cat /etc/pdinstalled");echo $ckpd ?>)"><img class="shake" src="img/png/docker.png" /><strong>Docker面板</strong></a>
+</li>
+
+<script type="text/javascript">
+    function disp_pd(lanip,pd)
+    {
+     if(pd){
+        window.open("http://"+ lanip+":9000")
+     }else{
+        alert("Docker管理面板尚未安装,请在终端运行以下命令一键安装\n install-portainer.sh")
+     }
+    }
+</script>

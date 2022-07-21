@@ -15,5 +15,3 @@ tar -zxvf ${DOWNLOAD_PATH}/${typecho_file} -C ${WWW_PATH} > /dev/null 2>&1
 cd ${WWW_PATH}
 mv build blog
 chmod 777 -R blog
-mv index.nginx-debian.html index3.html
-cd ${WORK_PATH}

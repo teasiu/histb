@@ -1,0 +1,14 @@
+<li>
+    <a href="javascript:disp_ql('<?php echo $lanip ?>',<?php $ckql=shell_exec("cat /etc/qlinstalled");echo $ckql ?>)"><img class="shake" src="img/png/ql.png" /><strong>青龙面板</strong></a>
+<li>
+
+<script type="text/javascript">
+    function disp_ql(lanip,ql)
+    {
+     if(ql){
+        window.open("http://"+ lanip+":5700")
+     }else{
+        alert("青龙面板未安装,请在终端运行以下命令一键安装\n install-qinglong.sh")
+     }
+    }
+</script>

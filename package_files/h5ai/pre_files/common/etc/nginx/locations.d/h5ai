@@ -1,0 +1,7 @@
+location /files/ {
+        charset utf-8;
+        client_body_temp_path   /tmp;
+        client_max_body_size    0;
+        auth_basic "admin";
+        auth_basic_user_file /etc/nginx/passwords.list;
+}

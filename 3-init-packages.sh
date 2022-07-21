@@ -1,6 +1,13 @@
 #!/bin/bash
 source utils.sh
 
+usage() {
+    cat <<-EOF
+Usage: usage: 3-init-packages.sh [<package name> ...]
+EOF
+    _exit $1
+}
+
 ARCH=$(awk 'NR==2' target_arch 2> /dev/null)
 WORK_PATH=$(cd $(dirname $0) && pwd )
 ROOTFS="${WORK_PATH}/rootfs"
@@ -53,7 +60,12 @@ install_package() {
 }
 
 install_all_package() {
-	packages=`find ${PKG_SCRIPT_PATH}|grep "\.sh$"|sort`
+    if [ "$*" = "" ]; then
+        packages=`find ${PKG_SCRIPT_PATH}|grep "\.sh$"|sort`
+	else
+        packages=$*
+	fi
+	
 	for i in $packages ;do
 		pkg_script=`basename $i`
 		install_package $pkg_script
@@ -78,8 +90,8 @@ EOF
 
 main() {
 	apt_update
-	install_all_package
+	install_all_package $*
 	apt_clear
 }
 
-main
+main "$@"

@@ -5,6 +5,9 @@ apt-get install -y nginx php-fpm php-sqlite3 libnginx-mod-http-dav-ext
 EOF
 cd ${WORK_PATH}
 mkdir -p ${ROOTFS}/etc/nginx/sites-available
+mkdir -p ${ROOTFS}/etc/nginx/locations.d
+
+mv ${WWW_PATH}/index.nginx-debian.html ${WWW_PATH}/index3.html
 
 # disable logs
 sed -i 's/access_log .*;/access_log off;/g' ${ROOTFS}/etc/nginx/nginx.conf

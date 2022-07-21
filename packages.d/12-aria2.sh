@@ -1,4 +1,5 @@
 # install aria2
+install_package 00-nginx.sh
 
 cat << EOF | LC_ALL=C LANGUAGE=C LANG=C chroot ${ROOTFS}
 apt-get install -y aria2
