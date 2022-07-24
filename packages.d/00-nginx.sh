@@ -20,13 +20,6 @@ sed -i 's/^upload_max_filesize.*/upload_max_filesize = 500M/g' ${ROOTFS}/etc/php
 sed -i 's/^post_max_size.*/post_max_size = 500M/g' ${ROOTFS}/etc/php/7.4/cli/php.ini
 sed -i 's/^upload_max_filesize.*/upload_max_filesize = 500M/g' ${ROOTFS}/etc/php/7.4/cli/php.ini
 
-# phpinfo
-cat <<EOT > ${WWW_PATH}/info.php
-<?php
-phpinfo();
-?>
-EOT
-
 # html-php
 sed -i "404c security.limit_extensions = .php .php3 .php4 .php5 .php7 .html" ${ROOTFS}/etc/php/7.4/fpm/pool.d/www.conf
 
