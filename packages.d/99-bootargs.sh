@@ -14,3 +14,7 @@ cp -a package_files/bootargs/checkone_${ARCH} ${ROOTFS}/usr/bin/checkone
 chmod 777 ${ROOTFS}/usr/bin/recoverbackup
 chmod 755 ${ROOTFS}/usr/bin/checkone
 echo "hi3798$bootargs" > ${ROOTFS}/etc/hostname
+
+cat << EOF | chroot ${ROOTFS}
+/usr/bin/checkone
+EOF
