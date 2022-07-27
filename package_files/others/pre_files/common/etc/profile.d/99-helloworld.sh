@@ -13,7 +13,7 @@ echo -e "\e[33m
 	  原创作者: 神雕Teasiu
 	  贡献者: Hyy2001 MinaDee Xjm
 	  浏览详细使用教程请访问: \e[32mhttp://$IP\e[0m
-	  访问我们的官网: \e[32mhttps://www.histb.com\e[0m
+	  访问我们的官网: \e[32mhttps://www.ecoo.top\e[0m
 
    设备名称 : ${DEVICE}_$(egrep -oa "hi3798.+reg" /dev/mmcblk0p1 2> /dev/null | cut -d '_' -f1)
    系统版本 : $(awk -F '[= "]' '/PRETTY_NAME/{print $3,$4,$5}' /etc/os-release) | V$(cat /etc/nasversion)-$(uname -r)-$(getconf LONG_BIT)

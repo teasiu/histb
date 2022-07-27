@@ -9,7 +9,7 @@ then
 原创作者: \e[32m神雕Teasiu\e[0m
 贡献成员: Hyy2001 MinaDee Xjm
 教程地址: http://$IP
-官网地址: https://www.histb.com
+官网地址: https://www.ecoo.top
 社区地址: https://bbs.histb.com | 欢迎访问我们的社区, 你的肯定是对我们最大的支持!
 
 版权声明:\e[31m
