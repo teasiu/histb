@@ -125,7 +125,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <?php
-		$nasinfo = shell_exec("nasinfo");
+		$nasinfo = shell_exec("sudo nasinfo");
 		echo "<pre>$nasinfo</pre>";
 		?>
             </div>
