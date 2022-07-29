@@ -125,8 +125,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <?php
-		$systeminfo = shell_exec("bash /etc/profile.d/99-helloworld.sh");
-		echo "<pre>$systeminfo</pre>";
+		$nasinfo = shell_exec("nasinfo");
+		echo "<pre>$nasinfo</pre>";
 		?>
             </div>
             <div class="col-lg-12">
