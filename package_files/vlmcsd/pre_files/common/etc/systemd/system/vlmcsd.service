@@ -4,10 +4,9 @@ After=network.target
 
 [Service]
 Type=simple
-User=nobody
 Restart=on-failure
 RestartSec=5s
-ExecStart=/usr/bin/vlmcsd
+ExecStart=/usr/bin/vlmcsd -D -u nobody -g nogroup
 LimitNOFILE=1048576
 
 [Install]
