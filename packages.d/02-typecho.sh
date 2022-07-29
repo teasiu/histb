@@ -4,7 +4,7 @@ install_package 00-nginx.sh
 pkg_name="typecho"
 
 typecho_file="1.1-17.10.30-release.tar.gz"
-typecho_url="http://typecho.org/downloads/${typecho_file}"
+typecho_url="https://git.histb.com/teasiu/histb/releases/download/20220716/${typecho_file}"
 
 if [ ! -f ${DOWNLOAD_PATH}/${typecho_file} ]; then
     wget_cmd ${typecho_url}
