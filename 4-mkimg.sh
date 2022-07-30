@@ -2,7 +2,6 @@
 
 timestamp=$(date +%Y%m%d)
 file_prefix="Ubuntu-$(awk 'NR==1' target_arch 2> /dev/null)-$(awk 'NR==2' target_arch 2> /dev/null)-hi3798$(awk 'NR==1' target 2> /dev/null)"
-#OUTPUT="Ubuntu-$(awk 'NR==1' target_arch 2> /dev/null)-$(awk 'NR==2' target_arch 2> /dev/null)-hi3798$(awk 'NR==1' target 2> /dev/null)-$(date +%Y%m%d)-MD5.img"
 img_file="${file_prefix}-${timestamp}-MD5.img"
 TMPFS="tmp"
 
@@ -36,7 +35,7 @@ echo "Packed Firmware: $gz_file"
 echo "Packed Firmware Size: $(du -h $gz_file 2> /dev/null | awk '{print $1}')"
 
 backup_img="${file_prefix}-${timestamp}-backup-MD5.img"
-dd if=/dev/zero of=$backup_img bs=1M count=512 obs=1
+dd if=/dev/zero of=$backup_img count=1 obs=1 seek=536870400
 mkfs.ext4 $backup_img
 umount $TMPFS 2> /dev/null ; rm -r "$TMPFS" 2> /dev/null ; mkdir -p $TMPFS ; sleep 1
 mount $backup_img $TMPFS
@@ -44,7 +43,6 @@ cp $gz_file $TMPFS
 sync
 umount $TMPFS 2> /dev/null ; rm -r "$TMPFS" 2> /dev/null
 e2fsck -p -f $backup_img
-resize2fs -M $backup_img
 
 echo "Calculating MD5 for backup Firmware ..."
 old_backup_img=$backup_img
