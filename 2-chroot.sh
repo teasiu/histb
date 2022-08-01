@@ -61,7 +61,6 @@ EOF
 
 cat <<EOT >> rootfs/etc/fstab
 tmpfs /tmp tmpfs defaults,nosuid 0 0
-/swapfile swap swap defaults 0 0
 /dev/mmcblk0p6 / ext4 defaults,noatime,errors=remount-ro 0 1
 EOT
 
