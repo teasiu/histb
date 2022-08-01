@@ -84,8 +84,8 @@ apt_clear() {
 	apt-get autoremove --purge -y
 	apt-get autoclean -y
 	apt-get clean -y
-	rm /root/.bash_history >/dev/null 2>&1
 EOF
+	rm -f ${ROOTFS}/root/.bash_history
 }
 
 main() {
