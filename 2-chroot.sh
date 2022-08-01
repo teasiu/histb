@@ -71,3 +71,6 @@ cat <<EOT >> rootfs/etc/network/interfaces.d/eth0
 auto eth0
 iface eth0 inet dhcp
 EOT
+
+# resize2fs
+source package_files/system-resize2fs.sh

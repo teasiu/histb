@@ -49,7 +49,7 @@ if [ -z "$model" ]; then
         3. mv300
         "
         while :; do
-        read -p "你想要定制哪个版本？ " CHOOSE
+        read -p "浣犳兂瑕佸畾鍒跺摢涓増鏈紵 " CHOOSE
         case $CHOOSE in
             1)
                 model="mv100"
@@ -71,7 +71,7 @@ if [ -z "$model" ]; then
         2. mv300
         "
         while :; do
-        read -p "你想要定制哪个版本？ " CHOOSE
+        read -p "浣犳兂瑕佸畾鍒跺摢涓増鏈紵 " CHOOSE
         case $CHOOSE in
             1)
                 model="mv200"

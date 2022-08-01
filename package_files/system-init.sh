@@ -12,7 +12,6 @@
 
 if [ ! -f /etc/first_init ]
 then
-    resize2fs /dev/mmcblk0p9 &
     dmesg | grep "CPU: hi" | awk -F ':[ ]' '/CPU/{printf ($2)}' > /etc/regname
     echo `date +%s%N | md5sum | cut -c 1-5` > /etc/first_init
 
