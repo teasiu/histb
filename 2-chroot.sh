@@ -61,7 +61,7 @@ EOF
 
 cat <<EOT >> rootfs/etc/fstab
 tmpfs /tmp tmpfs defaults,nosuid 0 0
-/dev/mmcblk0p6 / ext4 defaults,noatime,errors=remount-ro 0 1
+/dev/mmcblk0p9 / ext4 defaults,noatime,errors=remount-ro 0 1
 EOT
 
 mkdir -p rootfs/etc/network/interfaces.d
