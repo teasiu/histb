@@ -4,7 +4,6 @@ ipaddr=192.168.1.10
 netmask=255.255.255.0
 gatewayip=192.168.1.1
 serverip=192.168.1.1
-bootcmd=mmc read 0 0x1FFFFC0 0x7000 0x14000;bootm 0x1FFFFC0
 bootargs_512M=mem=512M mmz=ddr,0,0,48M vmalloc=500M
 bootargs_1G=mem=1G mmz=ddr,0,0,48M vmalloc=500M
 bootargs_2G=mem=2G mmz=ddr,0,0,48M vmalloc=500M
@@ -12,6 +11,10 @@ bootargs_768M=mem=768M mmz=ddr,0,0,48M vmalloc=500M
 bootargs_1536M=mem=1536M mmz=ddr,0,0,48M vmalloc=500M
 bootargs_3840M=mem=3840M mmz=ddr,0,0,48M vmalloc=500M
 bootargs=console=ttyAMA0,115200 root=/dev/mmcblk0p9 rootfstype=ext4 rootwait blkdevparts=mmcblk0:1M(boot),1M(bootargs),4M(baseparam),4M(pqparam),4M(logo),40M(kernel),64M(busybox),512M(backup),-(ubuntu)
+bootcmd_emmc=mmc read 0 0x1FFFFC0 0x7000 0x14000;bootm 0x1FFFFC0
+loadfilef=usb start;fatload usb 0:1 0x1000000 fastboot.bin
+flashpartitionf=mmc erase 0x0 0x0 0x0440
+bootcmd=if run loadfilef; then run flashpartitionf && reset;else usb stop f;run bootcmd_emmc;fi
 bootdelay=0
 stdin=serial
 stdout=serial
