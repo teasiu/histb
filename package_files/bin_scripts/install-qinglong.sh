@@ -22,7 +22,7 @@ check_dockerimage(){
 install_dockerimage(){
 docker pull whyour/qinglong:latest
 docker run -dit \
-  -v /otp/ql:/ql/data \
+  -v /opt/ql:/ql/data \
   -v /dev:/dev \
   -p 5700:5700 \
   --name qinglong \
