@@ -1,6 +1,7 @@
 IP=$(ifconfig eth0 | grep '\<inet\>'| grep -v '127.0.0.1' | awk '{print $2}' | awk 'NR==1')
 DEVICE=$(dmesg 2> /dev/null | grep "CPU: hi3798" | awk -F ':[ ]' '/CPU/{printf ($2)}')
 [ ! "$DEVICE" ] && DEVICE=$(head -n 1 /etc/regname 2> /null)
+mac_now=$(ifconfig eth0 |grep "ether"| awk '{print $2}')
 clear
 echo -e "\e[33m
       __  ____                __       
@@ -22,6 +23,7 @@ echo -e "\e[33m
    启动时间 : $(awk '{a=$1/86400;b=($1%86400)/3600;c=($1%3600)/60;d=($1%60)} {printf("%d 天 %d 小时 %d 分钟 %d 秒\n",a,b,c,d)}' /proc/uptime)
    IP 地址  : $IP
    设备温度 : $(grep Tsensor /proc/msp/pm_cpu | awk '{print $4}')°C
+   MAC 地址 : $mac_now
 "
 
 alias reload='. /etc/profile'
