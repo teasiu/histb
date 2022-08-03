@@ -26,17 +26,20 @@ server {
                 fastcgi_param SCRIPT_FILENAME $document_root$real_script_name;
                 fastcgi_param SCRIPT_NAME $real_script_name;
                 fastcgi_param PATH_INFO $path_info;
-	#	# With php-fpm (or other unix sockets):
-		fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
-	#	# With php-cgi (or other tcp sockets):
-	#	fastcgi_pass 127.0.0.1:9000;
-	}
+                fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+    }
 
 	# deny access to .htaccess files, if Apache's document root
 	# concurs with nginx's one
 	#
-}
-
+  }
+  location /files/ {
+        charset utf-8;
+        client_body_temp_path   /tmp;
+        client_max_body_size    0;
+        auth_basic "admin";
+        auth_basic_user_file /etc/nginx/passwords.list;
+  }
 
 # Virtual Host configuration for example.com
 #
